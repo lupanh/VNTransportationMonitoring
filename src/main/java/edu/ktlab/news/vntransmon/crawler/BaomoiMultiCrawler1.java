@@ -3,7 +3,7 @@ package edu.ktlab.news.vntransmon.crawler;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class BaomoiMultiCrawler {
+public class BaomoiMultiCrawler1 {
 	static int numThreads = 4;
 	static int sizePool = 100;
 	static int startBaomoiID = 1011200;
@@ -14,13 +14,13 @@ public class BaomoiMultiCrawler {
 	public static void main(String[] args) throws Exception {
 		BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(sizePool);
 		
-		URLFetchQueueProducer producer = new URLFetchQueueProducer(queue, startBaomoiID, endBaomoiID);
-		URLFetchQueueConsumer[] consumers = new URLFetchQueueConsumer[numThreads];
+		BaomoiFetchQueueProducer producer = new BaomoiFetchQueueProducer(queue, startBaomoiID, endBaomoiID);
+		BaomoiFetchQueueConsumer[] consumers = new BaomoiFetchQueueConsumer[numThreads];
 		
 		producer.start();
 		Thread.sleep(1000);
 		for (int i = 0; i < numThreads; i++) {
-			consumers[i] = new URLFetchQueueConsumer(i, queue, outFolder);
+			consumers[i] = new BaomoiFetchQueueConsumer(i, queue, outFolder);
 			consumers[i].start();
 		}
 

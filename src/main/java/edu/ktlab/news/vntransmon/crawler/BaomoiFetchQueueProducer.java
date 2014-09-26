@@ -2,12 +2,12 @@ package edu.ktlab.news.vntransmon.crawler;
 
 import java.util.concurrent.BlockingQueue;
 
-public class URLFetchQueueProducer extends Thread {
+public class BaomoiFetchQueueProducer extends Thread {
 	protected BlockingQueue<Integer> queue = null;
 	protected int startID;
 	protected int endID;
 
-	public URLFetchQueueProducer(BlockingQueue<Integer> queue, int startID, int endID) {
+	public BaomoiFetchQueueProducer(BlockingQueue<Integer> queue, int startID, int endID) {
 		this.queue = queue;
 		this.startID = startID;
 		this.endID = endID;
