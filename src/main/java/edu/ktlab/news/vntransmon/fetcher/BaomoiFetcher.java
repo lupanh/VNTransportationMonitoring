@@ -18,19 +18,17 @@ public class BaomoiFetcher {
 		newsdoc.setUrl(doc.getElementsByTag("fb:comments").attr("href"));
 		newsdoc.setTitle(StringEscapeUtils.unescapeHtml4(doc.select("h1.title").text()));
 		newsdoc.setDate(StringEscapeUtils.unescapeHtml4(doc.select("span.time").text()));
-		newsdoc.setSummary(StringEscapeUtils.unescapeHtml4(doc.select("div.story-body h2.summary")
-				.text()));
-		newsdoc.setContent(StringEscapeUtils.unescapeHtml4(doc.select("div[itemprop=articleBody]")
-				.text()));
-
+		newsdoc.setSummary(StringEscapeUtils.unescapeHtml4(doc.select("div.story-body h2.summary").text()));
+		newsdoc.setContent(StringEscapeUtils.unescapeHtml4(doc.select("div[itemprop=articleBody]").text()));
+		if (newsdoc.getTitle().equals(""))
+			return null;
 		return newsdoc;
 	}
 
 	public static Document fetchURL(String url) {
 		Document doc;
 		try {
-			doc = Jsoup.connect(url).userAgent("Mozilla").cookie("auth", "token").timeout(3000)
-					.get();
+			doc = Jsoup.connect(url).userAgent("Mozilla").cookie("auth", "token").timeout(3000).get();
 		} catch (Exception e) {
 			return null;
 		}

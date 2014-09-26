@@ -7,7 +7,8 @@ public class BaomoiMultiCrawler {
 	static int numThreads = 4;
 	static int sizePool = 100;
 	static int startBaomoiID = 1011200;
-	static int endBaomoiID = 14909501;
+	//static int endBaomoiID = 14909501;
+	static int endBaomoiID = 1012200;
 	static String outFolder = "data/baomoi";
 	
 	public static void main(String[] args) throws Exception {
@@ -17,7 +18,7 @@ public class BaomoiMultiCrawler {
 		URLFetchQueueConsumer[] consumers = new URLFetchQueueConsumer[numThreads];
 		
 		producer.start();
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		for (int i = 0; i < numThreads; i++) {
 			consumers[i] = new URLFetchQueueConsumer(i, queue, outFolder);
 			consumers[i].start();
