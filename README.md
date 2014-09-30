@@ -13,7 +13,6 @@ Cài đặt:
 
 Thiết lập:
 - Mở file target\vntransmon-release\vntransmon\conf\crawler.properties
-
   + SIZE_POOL = 100 \\ Kích thước Pool
   + NUM_THREAD = 4 \\ Số lượng tiến trình chạy song song
   + ELASTIC_SERVER = localhost \\ Địa chỉ đến Elastic server
