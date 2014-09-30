@@ -1,4 +1,4 @@
-package edu.ktlab.news.vntransmon.libexample.io;
+package edu.ktlab.news.vntransmon.io;
 
 import com.google.gson.Gson;
 

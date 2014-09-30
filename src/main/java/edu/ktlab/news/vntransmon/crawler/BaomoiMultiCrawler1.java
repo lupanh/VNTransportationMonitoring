@@ -3,29 +3,46 @@ package edu.ktlab.news.vntransmon.crawler;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class BaomoiMultiCrawler1 {
-	static int numThreads = 4;
-	static int sizePool = 100;
-	static int startBaomoiID = 1011200;
-	//static int endBaomoiID = 14909501;
-	static int endBaomoiID = 1012200;
-	static String outFolder = "data/baomoi";
-	
-	public static void main(String[] args) throws Exception {
-		BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(sizePool);
-		
-		BaomoiFetchQueueProducer producer = new BaomoiFetchQueueProducer(queue, startBaomoiID, endBaomoiID);
-		BaomoiFetchQueueConsumer[] consumers = new BaomoiFetchQueueConsumer[numThreads];
-		
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.io.OutputWriter;
+import edu.ktlab.news.vntransmon.util.PropertyLoader;
+
+public class BaomoiMultiCrawler1 implements Crawler {
+	int NUM_THREAD = Integer.parseInt(PropertyLoader.getInstance().getProperties("NUM_THREAD"));
+	int SIZE_POOL = Integer.parseInt(PropertyLoader.getInstance().getProperties("SIZE_POOL"));
+	int BAOMOI_STARTID = Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_STARTID"));
+	int BAOMOI_ENDID = Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_ENDID"));
+	OutputWriter<NewsRawDocument> writer;
+
+	public BaomoiMultiCrawler1(OutputWriter<NewsRawDocument> writer) {
+		this.writer = writer;
+	}
+
+	public BaomoiMultiCrawler1(int numthread, int sizepool, int startid, int endid,
+			OutputWriter<NewsRawDocument> writer) {
+		this.NUM_THREAD = numthread;
+		this.SIZE_POOL = sizepool;
+		this.BAOMOI_STARTID = startid;
+		this.BAOMOI_ENDID = endid;
+		this.writer = writer;
+	}
+
+	public void crawl() throws Exception {
+		BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(SIZE_POOL);
+
+		BaomoiFetchQueueProducer producer = new BaomoiFetchQueueProducer(queue, BAOMOI_STARTID,
+				BAOMOI_ENDID);
+		BaomoiFetchQueueConsumer[] consumers = new BaomoiFetchQueueConsumer[NUM_THREAD];
+
 		producer.start();
 		Thread.sleep(1000);
-		for (int i = 0; i < numThreads; i++) {
-			consumers[i] = new BaomoiFetchQueueConsumer(i, queue, outFolder);
+		for (int i = 0; i < NUM_THREAD; i++) {
+			consumers[i] = new BaomoiFetchQueueConsumer(i, queue, writer);
 			consumers[i].start();
 		}
 
 		producer.join();
-		for (int i = 0; i < numThreads; i++) {
+		for (int i = 0; i < NUM_THREAD; i++) {
 			try {
 				consumers[i].join();
 			} catch (InterruptedException e) {
@@ -33,5 +50,4 @@ public class BaomoiMultiCrawler1 {
 			}
 		}
 	}
-
 }

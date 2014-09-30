@@ -1,7 +1,5 @@
 package edu.ktlab.news.vntransmon.crawler;
 
-import java.io.File;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -12,48 +10,62 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
-import edu.ktlab.news.vntransmon.util.FileHelper;
+import edu.ktlab.news.vntransmon.io.OutputWriter;
+import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
-public class BaomoiMultiCrawler2 {
-	static int numThreads = 4;
-	static int sizePool = 100;
-	static int timeout = 5000;
-	static int startBaomoiID = 1011200;
-	// static int endBaomoiID = 14909501;
-	static int endBaomoiID = 1012200;
-	static String outFolder = "data/baomoi";
+public class BaomoiMultiCrawler2 implements Crawler {
+	int NUM_THREAD = Integer.parseInt(PropertyLoader.getInstance().getProperties("NUM_THREAD"));
+	int SIZE_POOL = Integer.parseInt(PropertyLoader.getInstance().getProperties("SIZE_POOL"));
+	int BAOMOI_STARTID = Integer.parseInt(PropertyLoader.getInstance().getProperties(
+			"BAOMOI_STARTID"));
+	int BAOMOI_ENDID = Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_ENDID"));
+	OutputWriter<NewsRawDocument> writer;
+	int TIMEOUT = 5000;
 
-	public static void main(String[] args) throws Exception {
+	public BaomoiMultiCrawler2(OutputWriter<NewsRawDocument> writer) {
+		this.writer = writer;
+	}
+
+	public BaomoiMultiCrawler2(int numthread, int sizepool, int startid, int endid,
+			OutputWriter<NewsRawDocument> writer) {
+		this.NUM_THREAD = numthread;
+		this.SIZE_POOL = sizepool;
+		this.BAOMOI_STARTID = startid;
+		this.BAOMOI_ENDID = endid;
+		this.writer = writer;
+	}
+
+	public void crawl() throws Exception {
 		int runner = 0;
 		List<Integer> ids = new ArrayList<Integer>();
 
 		long startTime = System.currentTimeMillis();
 
-		for (int i = startBaomoiID; i <= endBaomoiID; i++) {
+		for (int i = BAOMOI_STARTID; i <= BAOMOI_ENDID; i++) {
 			runner++;
 			ids.add(i);
-			if (runner % sizePool == 0) {
-				excuteList(ids, runner, startTime);
+			if (runner % SIZE_POOL == 0) {
+				excuteList(ids, runner, startTime, writer);
 				ids = new ArrayList<Integer>();
 			}
 		}
-		excuteList(ids, runner, startTime);
+		excuteList(ids, runner, startTime, writer);
 	}
 
-	static void excuteList(List<Integer> ids, int runner, long startTime) throws Exception {
-		ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+	void excuteList(List<Integer> ids, int runner, long startTime,
+			OutputWriter<NewsRawDocument> writer) throws Exception {
+		ExecutorService executor = Executors.newFixedThreadPool(NUM_THREAD);
 		List<Future<NewsRawDocument>> list = new ArrayList<Future<NewsRawDocument>>();
 		for (int id : ids) {
-			Callable<NewsRawDocument> worker = new BaomoiFetchCallable(id, outFolder);
+			Callable<NewsRawDocument> worker = new BaomoiFetchCallable(id);
 			Future<NewsRawDocument> collector = executor.submit(worker);
 			list.add(collector);
 		}
 		for (Future<NewsRawDocument> future : list) {
 			try {
-				NewsRawDocument doc = future.get(timeout, TimeUnit.MILLISECONDS);
+				NewsRawDocument doc = future.get(TIMEOUT, TimeUnit.MILLISECONDS);
 				if (doc != null) {
-					FileHelper.writeToFile(doc.printJson(), new File(outFolder + "/" + doc.getId()
-							+ ".json"), Charset.forName("UTF-8"));
+					writer.write(doc);
 				}
 			} catch (TimeoutException e) {
 				future.cancel(true);
@@ -64,5 +76,4 @@ public class BaomoiMultiCrawler2 {
 		startTime = currentTime;
 		executor.shutdown();
 	}
-
 }

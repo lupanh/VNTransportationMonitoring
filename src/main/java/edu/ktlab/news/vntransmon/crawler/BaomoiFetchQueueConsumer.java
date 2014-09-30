@@ -1,22 +1,21 @@
 package edu.ktlab.news.vntransmon.crawler;
 
-import java.io.File;
-import java.nio.charset.Charset;
 import java.util.concurrent.BlockingQueue;
 
 import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.fetcher.BaomoiFetcher;
-import edu.ktlab.news.vntransmon.util.FileHelper;
+import edu.ktlab.news.vntransmon.io.OutputWriter;
 
 public class BaomoiFetchQueueConsumer extends Thread {
 	int id;
 	BlockingQueue<Integer> queue = null;
-	String outFolder;
+	OutputWriter<NewsRawDocument> writer;
 
-	public BaomoiFetchQueueConsumer(int id, BlockingQueue<Integer> queue, String outFolder) {
+	public BaomoiFetchQueueConsumer(int id, BlockingQueue<Integer> queue,
+			OutputWriter<NewsRawDocument> writer) {
 		this.id = id;
 		this.queue = queue;
-		this.outFolder = outFolder;
+		this.writer = writer;
 	}
 
 	public void run() {
@@ -27,8 +26,7 @@ public class BaomoiFetchQueueConsumer extends Thread {
 				int baomoiID = queue.take();
 				NewsRawDocument doc = BaomoiFetcher.fetch(baomoiID);
 				if (doc != null) {
-					FileHelper.writeToFile(doc.printJson(), new File(outFolder + "/" + doc.getId()
-							+ ".json"), Charset.forName("UTF-8"));					
+					writer.write(doc);
 				}
 				index++;
 				if (index % 100 == 0) {

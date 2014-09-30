@@ -7,19 +7,21 @@
 	<dependencySets>
 		<dependencySet>
 			<outputDirectory>lib</outputDirectory>
-			<includes>
-				<include>edu.ktlab.news.vntransmon:vntransmon</include>
-				<include>org.jsoup:jsoup</include>
-				<include>us.codecraft:xsoup</include>
-				<include>org.apache.commons:commons-lang3</include>
-				<include>com.google.code.gson:gson</include>
-			</includes>
+			<useProjectArtifact>true</useProjectArtifact>
+			<scope>runtime</scope>
 		</dependencySet>
 	</dependencySets>
 	<fileSets>
 		<fileSet>
 			<directory>src/app</directory>
 			<outputDirectory></outputDirectory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>conf</directory>
+			<outputDirectory>conf</outputDirectory>
 			<includes>
 				<include>**/*</include>
 			</includes>

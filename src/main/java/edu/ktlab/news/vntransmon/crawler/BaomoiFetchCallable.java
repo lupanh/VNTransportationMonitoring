@@ -7,11 +7,9 @@ import edu.ktlab.news.vntransmon.fetcher.BaomoiFetcher;
 
 public class BaomoiFetchCallable implements Callable<NewsRawDocument>{
 	int baomoiID;
-	String outFolder;
 
-	public BaomoiFetchCallable(int baomoiID, String outFolder) {
+	public BaomoiFetchCallable(int baomoiID) {
 		this.baomoiID = baomoiID;
-		this.outFolder = outFolder;
 	}
 	
 	public NewsRawDocument call() throws Exception {
