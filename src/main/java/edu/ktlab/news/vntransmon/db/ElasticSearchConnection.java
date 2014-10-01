@@ -10,6 +10,8 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
@@ -26,7 +28,9 @@ public class ElasticSearchConnection {
 
 	@SuppressWarnings("resource")
 	public ElasticSearchConnection(String ipAddress) {
-		client = new TransportClient().addTransportAddress(new InetSocketTransportAddress(
+		Settings settings = ImmutableSettings.settingsBuilder().put("client.transport.sniff", true)
+				.put("client.transport.ping_timeout", 10000).build();
+		client = new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress(
 				ipAddress, 9300));
 	}
 
