@@ -35,39 +35,86 @@ public class BaomoiESFunction {
 	}
 
 	public List<NewsRawDocument> queryArticleByString(String query, int size, int from) {
+		return queryArticleByString(PropertyLoader.getInstance().getProperties("INDEX_NAME"),
+				PropertyLoader.getInstance().getProperties("TYPE_NEWS_NAME"), query, size, from);
+	}
+
+	public List<NewsRawDocument> queryArticleByString(String index, String type, String query,
+			int size, int from) {
 		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
 
-		SearchResponse response = client
-				.prepareSearch(PropertyLoader.getInstance().getProperties("INDEX_NAME"))
-				.setTypes("article")
-				.setQuery(QueryBuilders.simpleQueryString(query))
-				.setSize(size)
-				.setFrom(from)
+		SearchResponse response = client.prepareSearch(index).setTypes(type)
+				.setQuery(QueryBuilders.simpleQueryString(query)).setSize(size).setFrom(from)
 				.execute().actionGet();
-		System.err.println("Query:" + query + " (Number of hits " + response.getHits().getTotalHits() +  ", size " + size + ", from " + from + ")");
+		System.err.println("Query:" + query + " (Number of hits "
+				+ response.getHits().getTotalHits() + ", size " + size + ", from " + from + ")");
+
 		for (SearchHit hit : response.getHits().getHits()) {
 			NewsRawDocument article = gson.fromJson(hit.sourceAsString(), NewsRawDocument.class);
 			articles.add(article);
 		}
-		
+
 		return articles;
 	}
-	
-	public List<NewsRawDocument> queryAllArticleByString(String query, int size) {
+
+	public List<NewsRawDocument> queryArticleByMatchAll(String index, String type, int size,
+			int from) {
 		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
-		
-		SearchResponse response = client
-				.prepareSearch(PropertyLoader.getInstance().getProperties("INDEX_NAME"))
-				.setTypes("article")
-				.setQuery(QueryBuilders.simpleQueryString(query))
-				.setSize(1)
-				.execute().actionGet();
-		
+
+		SearchResponse response = client.prepareSearch(index).setTypes(type)
+				.setQuery(QueryBuilders.matchAllQuery()).setSize(size).setFrom(from).execute()
+				.actionGet();
+		System.err.println("Query:*:* (Number of hits " + response.getHits().getTotalHits()
+				+ ", size " + size + ", from " + from + ")");
+
+		for (SearchHit hit : response.getHits().getHits()) {
+			NewsRawDocument article = gson.fromJson(hit.sourceAsString(), NewsRawDocument.class);
+			articles.add(article);
+		}
+
+		return articles;
+	}
+
+	public List<NewsRawDocument> queryAllArticleByString(String query, int size) {
+		return queryAllArticleByString(PropertyLoader.getInstance().getProperties("INDEX_NAME"),
+				PropertyLoader.getInstance().getProperties("TYPE_NEWS_NAME"), query, size);
+	}
+
+	public List<NewsRawDocument> queryAllArticleByString(String index, String type, String query,
+			int size) {
+		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
+
+		SearchResponse response = client.prepareSearch(index).setTypes(type)
+				.setQuery(QueryBuilders.simpleQueryString(query)).setSize(1).execute().actionGet();
+
 		long numHits = response.getHits().getTotalHits();
 		int numPages = (numHits == 0) ? 0 : (int) (numHits / size) + 1;
 		for (int i = 0; i < numPages; i++)
-			articles.addAll(queryArticleByString(query, size, i * size));
+			articles.addAll(queryArticleByString(index, type, query, size, i * size));
 
 		return articles;
+	}
+
+	public List<NewsRawDocument> queryAllArticleByMatchAll(String index, String type, int size) {
+		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
+
+		SearchResponse response = client.prepareSearch(index).setTypes(type)
+				.setQuery(QueryBuilders.matchAllQuery()).setSize(1).execute().actionGet();
+
+		long numHits = response.getHits().getTotalHits();
+		int numPages = (numHits == 0) ? 0 : (int) (numHits / size) + 1;
+		for (int i = 0; i < numPages; i++)
+			articles.addAll(queryArticleByMatchAll(index, type, size, i * size));
+
+		return articles;
+	}
+
+	public void deleteById(String index, String type, String id) {
+		client.prepareDelete(index, type, id).execute().actionGet();
+	}
+
+	public void deleteByQuery(String index, String type, String query) {
+		client.prepareDeleteByQuery(index).setQuery(QueryBuilders.simpleQueryString(query))
+				.execute().actionGet();
 	}
 }

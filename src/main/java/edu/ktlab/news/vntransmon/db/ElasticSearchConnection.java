@@ -1,5 +1,8 @@
 package edu.ktlab.news.vntransmon.db;
 
+import static org.elasticsearch.client.Requests.createIndexRequest;
+
+import java.io.IOException;
 import java.util.List;
 
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -12,6 +15,8 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
@@ -82,5 +87,18 @@ public class ElasticSearchConnection {
 		if (!delete.isAcknowledged()) {
 			System.out.println("Index wasn't deleted");
 		}
+	}
+	
+	public void createMapping(String indexname, String type) {
+		XContentBuilder builder;
+		try {
+			builder = XContentFactory.jsonBuilder().startObject().startObject(type)
+					.startObject("properties").startObject("date").field("type", "date").endObject()				
+					.endObject().endObject().endObject();
+			client.admin().indices().create(createIndexRequest(indexname).mapping(type, builder))
+			.actionGet();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 }

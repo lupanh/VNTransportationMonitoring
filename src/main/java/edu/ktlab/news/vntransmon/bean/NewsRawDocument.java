@@ -2,6 +2,8 @@ package edu.ktlab.news.vntransmon.bean;
 
 import com.google.gson.Gson;
 
+import edu.ktlab.news.vntransmon.util.JodaTimeParser;
+
 public class NewsRawDocument {
 	String id;
 	String title;
@@ -48,7 +50,7 @@ public class NewsRawDocument {
 	}
 
 	public void setDate(String date) {
-		this.date = date;
+		this.date = JodaTimeParser.parseDate(date);
 	}
 
 	public String getUrl() {
@@ -66,7 +68,7 @@ public class NewsRawDocument {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+
 	public String printJson() {
 		Gson gson = new Gson();
 		return gson.toJson(this);
