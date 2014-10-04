@@ -14,7 +14,7 @@ public class BaomoiFetcher {
 		
 		NewsRawDocument newsdoc = new NewsRawDocument();
 		newsdoc.setId(idBaomoi + "");
-		newsdoc.setUrl(doc.getElementsByTag("fb:comments").attr("href"));
+		newsdoc.setUrl(getRootURL(doc.getElementsByTag("fb:comments").attr("href")));
 		newsdoc.setTitle(StringEscapeUtils.unescapeHtml4(doc.select("h1.title").text()));
 		newsdoc.setDate(StringEscapeUtils.unescapeHtml4(doc.select("span.time").text()));
 		newsdoc.setSummary(StringEscapeUtils.unescapeHtml4(doc.select("div.story-body h2.summary").text()));
@@ -24,7 +24,7 @@ public class BaomoiFetcher {
 		return newsdoc;
 	}	
 
-	public static String getRootURL(String redirectURL) {
+	public static String getRootURL(String redirectURL) { 
 		Document doc = URLFetcher.fetch(redirectURL);
 		if (doc != null)
 			return doc.baseUri();

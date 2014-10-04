@@ -13,6 +13,7 @@ public class QueryESExample {
 				.getProperties("INDEX_NAME")).setTypes("article")
 				.setQuery(QueryBuilders.simpleQueryString("\"tai nạn giao thông\"")).execute().actionGet();
 		for (SearchHit hit : response.getHits().getHits()) {
+			System.out.println(hit.getId());
 			System.out.println(hit.getSourceAsString());
 		}
 	}

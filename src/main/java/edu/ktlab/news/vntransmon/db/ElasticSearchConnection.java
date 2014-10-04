@@ -57,8 +57,12 @@ public class ElasticSearchConnection {
 	}
 
 	public IndexResponse createIndexResponse(String indexname, String type, String jsondata) {
-		IndexResponse response = client.prepareIndex(indexname, type).setSource(jsondata).execute()
-				.actionGet();
+		IndexResponse response = client.prepareIndex(indexname, type).setSource(jsondata).execute().actionGet();
+		return response;
+	}
+	
+	public IndexResponse createIndexResponse(String indexname, String type, String id, String jsondata) {
+		IndexResponse response = client.prepareIndex(indexname, type, id).setSource(jsondata).execute().actionGet();
 		return response;
 	}
 

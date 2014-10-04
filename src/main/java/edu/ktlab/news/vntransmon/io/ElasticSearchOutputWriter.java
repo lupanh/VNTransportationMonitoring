@@ -10,7 +10,7 @@ public class ElasticSearchOutputWriter implements OutputWriter<NewsRawDocument> 
 			.getProperties("ELASTIC_SERVER"));
 	BaomoiESFunction esfunction = new BaomoiESFunction(es.getClient());
 
-	public void write(NewsRawDocument doc) {
+	public synchronized void write(NewsRawDocument doc) {		
 		if (!esfunction.checkExistBaomoiId(PropertyLoader.getInstance().getProperties("INDEX_NAME"), doc.getId()))
 			es.createIndexResponse(PropertyLoader.getInstance().getProperties("INDEX_NAME"),
 					PropertyLoader.getInstance().getProperties("TYPE_NEWS_NAME"), doc.printJson());
