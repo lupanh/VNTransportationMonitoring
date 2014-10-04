@@ -29,6 +29,7 @@ public class BaomoiDBMoving {
 			List<NewsRawDocument> articles = esfunction.queryArticleByMatchAll(SOURCE_INDEX,
 					"article", size, i * size);
 			for (NewsRawDocument doc : articles) {
+				doc.setDate(doc.getDate());
 				es.createIndexResponse(TARGET_INDEX, "article", doc.getId(), doc.printJson());
 				esfunction.deleteByQuery(SOURCE_INDEX, "article", "id:" + doc.getId());
 			}
