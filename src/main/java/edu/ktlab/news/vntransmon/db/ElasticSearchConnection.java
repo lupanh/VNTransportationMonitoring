@@ -7,7 +7,6 @@ import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.deletebyquery.DeleteByQueryResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.ImmutableSettings;
@@ -16,6 +15,8 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
+
+import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
 public class ElasticSearchConnection {
 	private Client client;
@@ -29,7 +30,8 @@ public class ElasticSearchConnection {
 	@SuppressWarnings("resource")
 	public ElasticSearchConnection(String ipAddress) {
 		Settings settings = ImmutableSettings.settingsBuilder().put("client.transport.sniff", true)
-				.put("client.transport.ping_timeout", 10000).build();
+				.put("client.transport.ping_timeout", PropertyLoader.getInstance()
+						.getProperties("ELASTIC_TIMEOUT")).build();
 		client = new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress(
 				ipAddress, 9300));
 	}
@@ -75,19 +77,6 @@ public class ElasticSearchConnection {
 				.delete(new DeleteIndexRequest(indexname)).actionGet();
 		if (!delete.isAcknowledged()) {
 			System.out.println("Index wasn't deleted");
-		}
-	}
-
-	public boolean checkExistIdPost(String indexname, String id) {
-		try {
-			SearchResponse response = client.prepareSearch(indexname)
-					.setQuery(QueryBuilders.termQuery("id", id)).execute().actionGet();
-			if (response.getHits().getTotalHits() > 0)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			return false;
 		}
 	}
 }

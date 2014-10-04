@@ -14,13 +14,12 @@ import edu.ktlab.news.vntransmon.io.OutputWriter;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
 public class BaomoiMultiCrawler2 implements Crawler {
-	int NUM_THREAD = Integer.parseInt(PropertyLoader.getInstance().getProperties("NUM_THREAD"));
+	int NUM_THREAD = Integer.parseInt(PropertyLoader.getInstance().getProperties("NUM_THREAD_FETCHER"));
 	int SIZE_POOL = Integer.parseInt(PropertyLoader.getInstance().getProperties("SIZE_POOL"));
-	int BAOMOI_STARTID = Integer.parseInt(PropertyLoader.getInstance().getProperties(
-			"BAOMOI_STARTID"));
+	int BAOMOI_STARTID = Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_STARTID"));
 	int BAOMOI_ENDID = Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_ENDID"));
+	int TIMEOUT = Integer.parseInt(PropertyLoader.getInstance().getProperties("FETCHER_TIMEOUT"));
 	OutputWriter<NewsRawDocument> writer;
-	int TIMEOUT = 5000;
 
 	public BaomoiMultiCrawler2(OutputWriter<NewsRawDocument> writer) {
 		this.writer = writer;

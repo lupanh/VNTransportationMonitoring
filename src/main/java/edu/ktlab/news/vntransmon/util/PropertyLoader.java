@@ -9,12 +9,16 @@ public class PropertyLoader {
 	private static String propertyFile = "conf/crawler.properties";
 	private static Properties properties;
 
-	private PropertyLoader() {
+	private PropertyLoader(String propertyFile) {
 		try {
 			properties = new Properties();
 			properties.load(new FileInputStream(propertyFile));
 		} catch (IOException e) {
 		}
+	}
+
+	private PropertyLoader() {
+		this(propertyFile);
 	}
 
 	public static synchronized PropertyLoader getInstance() {

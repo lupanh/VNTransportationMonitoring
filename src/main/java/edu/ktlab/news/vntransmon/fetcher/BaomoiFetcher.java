@@ -1,7 +1,6 @@
 package edu.ktlab.news.vntransmon.fetcher;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
@@ -9,7 +8,7 @@ import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 public class BaomoiFetcher {
 	public static NewsRawDocument fetch(int idBaomoi) {
 		String url = "http://www.baomoi.com/a-b-c/126/" + idBaomoi + ".epi";
-		Document doc = fetchURL(url);
+		Document doc = URLFetcher.fetch(url);
 		if (doc == null)
 			return null;
 		
@@ -23,20 +22,10 @@ public class BaomoiFetcher {
 		if (newsdoc.getTitle().equals(""))
 			return null;
 		return newsdoc;
-	}
-
-	public static Document fetchURL(String url) {
-		Document doc;
-		try {
-			doc = Jsoup.connect(url).userAgent("Mozilla").cookie("auth", "token").timeout(3000).get();
-		} catch (Exception e) {
-			return null;
-		}
-		return doc;
-	}
+	}	
 
 	public static String getRootURL(String redirectURL) {
-		Document doc = fetchURL(redirectURL);
+		Document doc = URLFetcher.fetch(redirectURL);
 		if (doc != null)
 			return doc.baseUri();
 		else
