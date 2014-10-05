@@ -26,8 +26,7 @@ public class BaomoiFeeder {
 		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(Integer
 				.parseInt(PropertyLoader.getInstance().getProperties("NUM_THREAD_FEEDER")));
 		for (String url : urls) {
-			scheduler.scheduleAtFixedRate(
-					new PageFeeder(url, writer), 0, 
+			scheduler.scheduleAtFixedRate(new PageFeeder(url, writer), 0,
 					Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_REFRESH_TIME")), SECONDS);
 		}
 	}
@@ -44,17 +43,21 @@ class PageFeeder implements Runnable {
 
 	public void run() {
 		System.out.println("Feed " + url);
+		try {
+			URLFetcher fetcher = new URLFetcher(url);
+			List<URL> links = fetcher.getFullLinks();
+			if (links != null)
+				for (URL link : links) {
+					if (link.toString().matches("(?s)http://www.baomoi\\.com/[^/]*/\\d+/\\d+.epi")) {
+						NewsRawDocument doc = BaomoiFetcher.fetch(getBaomoiID(link.toString()));
+						if (doc != null)
+							writer.write(doc);
+					}
+				}
 
-		URLFetcher fetcher = new URLFetcher(url);
-		List<URL> links = fetcher.getFullLinks();
-		if (links != null)
-			for (URL link : links) {
-				if (link.toString().matches("(?s)http://www.baomoi\\.com/[^/]*/\\d+/\\d+.epi")) {
-					NewsRawDocument doc = BaomoiFetcher.fetch(getBaomoiID(link.toString()));
-					if (doc != null)
-						writer.write(doc);
-				}					
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	int getBaomoiID(String link) {
