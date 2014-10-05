@@ -6,6 +6,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
 
 import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.util.JodaTimeParser;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
 public class BaomoiDBMoving {
@@ -29,7 +30,7 @@ public class BaomoiDBMoving {
 			List<NewsRawDocument> articles = esfunction.queryArticleByMatchAll(SOURCE_INDEX,
 					"article", size, i * size);
 			for (NewsRawDocument doc : articles) {
-				doc.setDate(doc.getDate());
+				doc.setDate(JodaTimeParser.parseDate(doc.getDate()));
 				es.createIndexResponse(TARGET_INDEX, "article", doc.getId(), doc.printJson());
 				esfunction.deleteByQuery(SOURCE_INDEX, "article", "id:" + doc.getId());
 			}

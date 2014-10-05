@@ -49,8 +49,11 @@ class PageFeeder implements Runnable {
 		List<URL> links = fetcher.getFullLinks();
 		if (links != null)
 			for (URL link : links) {
-				if (link.toString().matches("(?s)http://www.baomoi\\.com/[^/]*/\\d+/\\d+.epi"))
-					writer.write(BaomoiFetcher.fetch(getBaomoiID(link.toString())));
+				if (link.toString().matches("(?s)http://www.baomoi\\.com/[^/]*/\\d+/\\d+.epi")) {
+					NewsRawDocument doc = BaomoiFetcher.fetch(getBaomoiID(link.toString()));
+					if (doc != null)
+						writer.write(doc);
+				}					
 			}
 	}
 

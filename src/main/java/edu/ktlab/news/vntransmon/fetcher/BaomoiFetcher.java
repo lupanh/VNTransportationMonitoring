@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.nodes.Document;
 
 import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.util.JodaTimeParser;
 
 public class BaomoiFetcher {
 	public static NewsRawDocument fetch(int idBaomoi) {
@@ -15,12 +16,20 @@ public class BaomoiFetcher {
 		NewsRawDocument newsdoc = new NewsRawDocument();
 		newsdoc.setId(idBaomoi + "");
 		newsdoc.setUrl(getRootURL(doc.getElementsByTag("fb:comments").attr("href")));
-		newsdoc.setTitle(StringEscapeUtils.unescapeHtml4(doc.select("h1.title").text()));
-		newsdoc.setDate(StringEscapeUtils.unescapeHtml4(doc.select("span.time").text()));
+		
+		String title = StringEscapeUtils.unescapeHtml4(doc.select("h1.title").text());
+		if (title.equals(""))
+			return null;
+		newsdoc.setTitle(title);
+		
+		String date = JodaTimeParser.parseDate(StringEscapeUtils.unescapeHtml4(doc.select("span.time").text()));
+		if (date.equals(""))
+			return null;
+		newsdoc.setDate(date);
+		
 		newsdoc.setSummary(StringEscapeUtils.unescapeHtml4(doc.select("div.story-body h2.summary").text()));
 		newsdoc.setContent(StringEscapeUtils.unescapeHtml4(doc.select("div[itemprop=articleBody]").text()));
-		if (newsdoc.getTitle().equals(""))
-			return null;
+		
 		return newsdoc;
 	}	
 
