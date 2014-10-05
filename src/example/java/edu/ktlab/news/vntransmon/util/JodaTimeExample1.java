@@ -6,7 +6,7 @@ import org.elasticsearch.common.joda.time.DateTime;
 import org.elasticsearch.common.joda.time.DateTimeZone;
 import org.elasticsearch.common.joda.time.format.DateTimeFormat;
 
-public class JodaTimeExample {
+public class JodaTimeExample1 {
 
 	public static void main(String[] args) {
 		String pattern = "dd/MM/yyyy HH:mm";
