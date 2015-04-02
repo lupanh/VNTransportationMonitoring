@@ -24,7 +24,7 @@ public class EventExtractionDBWriterExample {
 	static TwoClassesClassifier layer1Classifier;
 	static FiveClassesClassifier layer2Classifier;
 	static int BATCH_SIZE = 100;
-	static int FROM = 1785500;
+	static int FROM = Integer.parseInt(PropertyLoader.getInstance().getProperties("EVEX_FROM_ID"));;
 
 	public static void main(String[] args) {
 		try {
