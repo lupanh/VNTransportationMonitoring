@@ -12,6 +12,8 @@ public class BaomoiMultiCrawler1 implements Crawler {
 	int SIZE_POOL = Integer.parseInt(PropertyLoader.getInstance().getProperties("SIZE_POOL"));
 	int BAOMOI_STARTID = Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_STARTID"));
 	int BAOMOI_ENDID = Integer.parseInt(PropertyLoader.getInstance().getProperties("BAOMOI_ENDID"));
+	boolean CRAWLER_ORDER = Boolean.parseBoolean(PropertyLoader.getInstance().getProperties("CRAWLER_ORDER"));
+	
 	OutputWriter<NewsRawDocument> writer;
 
 	public BaomoiMultiCrawler1(OutputWriter<NewsRawDocument> writer) {
@@ -30,7 +32,7 @@ public class BaomoiMultiCrawler1 implements Crawler {
 	public void crawl() throws Exception {
 		BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(SIZE_POOL);
 
-		BaomoiFetchQueueProducer producer = new BaomoiFetchQueueProducer(queue, BAOMOI_STARTID,	BAOMOI_ENDID);
+		BaomoiFetchQueueProducer producer = new BaomoiFetchQueueProducer(queue, BAOMOI_STARTID,	BAOMOI_ENDID, CRAWLER_ORDER);
 		BaomoiFetchQueueConsumer[] consumers = new BaomoiFetchQueueConsumer[NUM_THREAD];
 
 		producer.start();
