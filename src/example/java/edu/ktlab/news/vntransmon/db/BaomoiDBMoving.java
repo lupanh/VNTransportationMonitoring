@@ -5,7 +5,7 @@ import java.util.List;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.util.JodaTimeParser;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;
 

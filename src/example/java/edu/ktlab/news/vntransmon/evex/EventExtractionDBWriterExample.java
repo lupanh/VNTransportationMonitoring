@@ -5,9 +5,9 @@ import java.util.List;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
 
+import edu.ktlab.news.vntransmon.bean.TrAcEvent;
 import edu.ktlab.news.vntransmon.classifer.FiveClassesClassifier;
 import edu.ktlab.news.vntransmon.classifer.TwoClassesClassifier;
-import edu.ktlab.news.vntransmon.data.TrAcEvent;
 import edu.ktlab.news.vntransmon.db.ElasticSearchConnection;
 import edu.ktlab.news.vntransmon.db.EventAccidentESFunction;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;

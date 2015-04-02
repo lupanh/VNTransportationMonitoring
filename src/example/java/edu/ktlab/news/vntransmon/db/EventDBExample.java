@@ -1,6 +1,6 @@
 package edu.ktlab.news.vntransmon.db;
 
-import edu.ktlab.news.vntransmon.data.TrAcEvent;
+import edu.ktlab.news.vntransmon.bean.TrAcEvent;
 
 public class EventDBExample {	
 	static ElasticSearchConnection es;

@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 
 import com.google.gson.Gson;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.nlp.tools.VNTWSSingleton;
 import edu.ktlab.news.vntransmon.util.FileHelper;
 

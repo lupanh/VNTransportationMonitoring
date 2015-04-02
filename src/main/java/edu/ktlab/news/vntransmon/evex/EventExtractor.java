@@ -5,7 +5,7 @@ import opennlp.tools.util.Span;
 import com.google.gson.Gson;
 
 import edu.ktlab.news.vntransmon.api.GetGeocoding;
-import edu.ktlab.news.vntransmon.data.TrAcEvent;
+import edu.ktlab.news.vntransmon.bean.TrAcEvent;
 import edu.ktlab.news.vntransmon.nlp.ner.MaxentNERFactoryExample1;
 import edu.ktlab.news.vntransmon.nlp.ner.MaxentNERRecognizer;
 import edu.ktlab.news.vntransmon.nlp.tagger.TextSpan;

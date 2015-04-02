@@ -3,7 +3,7 @@ package edu.ktlab.news.vntransmon.db;
 import java.io.File;
 import java.nio.charset.Charset;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.fetcher.BaomoiFetcher;
 import edu.ktlab.news.vntransmon.util.FileHelper;
 

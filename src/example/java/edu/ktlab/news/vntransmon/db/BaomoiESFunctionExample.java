@@ -2,7 +2,7 @@ package edu.ktlab.news.vntransmon.db;
 
 import java.util.List;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 
 public class BaomoiESFunctionExample {
 

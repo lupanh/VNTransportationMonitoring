@@ -5,9 +5,9 @@ import java.nio.charset.Charset;
 
 import com.google.gson.Gson;
 
+import edu.ktlab.news.vntransmon.bean.TrAcEvent;
 import edu.ktlab.news.vntransmon.classifer.FiveClassesClassifier;
 import edu.ktlab.news.vntransmon.classifer.TwoClassesClassifier;
-import edu.ktlab.news.vntransmon.data.TrAcEvent;
 import edu.ktlab.news.vntransmon.util.FileHelper;
 
 public class EventExtractorExample {

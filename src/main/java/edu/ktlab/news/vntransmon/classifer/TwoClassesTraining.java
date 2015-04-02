@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 
 import de.bwaldvogel.liblinear.Train;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.classifer.feature.BOWFeatureGenerator;
 import edu.ktlab.news.vntransmon.classifer.feature.ContextGenerator;
 import edu.ktlab.news.vntransmon.classifer.feature.FeatureGenerator;
 import edu.ktlab.news.vntransmon.classifer.feature.FeatureSet;
 import edu.ktlab.news.vntransmon.classifer.feature.NGramFeatureGenerator;
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 import edu.ktlab.news.vntransmon.nlp.tools.SentenceSplitterSingleton;
 import edu.ktlab.news.vntransmon.nlp.tools.VNTWSSingleton;
 import edu.ktlab.news.vntransmon.util.FileHelper;

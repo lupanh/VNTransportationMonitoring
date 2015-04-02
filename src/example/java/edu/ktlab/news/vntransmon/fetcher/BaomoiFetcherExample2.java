@@ -1,6 +1,6 @@
 package edu.ktlab.news.vntransmon.fetcher;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 
 public class BaomoiFetcherExample2 {
 	public static void main(String[] args) throws Exception {

@@ -11,7 +11,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import com.google.gson.Gson;
 
 import edu.ktlab.news.vntransmon.api.GetGeocoding;
-import edu.ktlab.news.vntransmon.data.TrAcEvent;
+import edu.ktlab.news.vntransmon.bean.TrAcEvent;
 
 public class UpdateEventGeoExample {
 	static EventAccidentESFunction esfunction;

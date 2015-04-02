@@ -2,7 +2,7 @@ package edu.ktlab.news.vntransmon.io;
 
 import com.google.gson.Gson;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 
 public class GsonExample {
 	public static void main(String[] args) throws Exception {

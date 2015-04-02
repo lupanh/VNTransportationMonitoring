@@ -3,7 +3,7 @@ package edu.ktlab.news.vntransmon.fetcher;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.nodes.Document;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.util.JodaTimeParser;
 
 public class BaomoiFetcher {

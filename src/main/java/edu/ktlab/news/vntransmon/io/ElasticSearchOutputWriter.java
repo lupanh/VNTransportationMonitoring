@@ -1,6 +1,6 @@
 package edu.ktlab.news.vntransmon.io;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.db.BaomoiESFunction;
 import edu.ktlab.news.vntransmon.db.ElasticSearchConnection;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;

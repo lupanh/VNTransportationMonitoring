@@ -3,7 +3,7 @@ package edu.ktlab.news.vntransmon.crawler;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import edu.ktlab.news.vntransmon.data.NewsRawDocument;
+import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
 import edu.ktlab.news.vntransmon.io.OutputWriter;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
