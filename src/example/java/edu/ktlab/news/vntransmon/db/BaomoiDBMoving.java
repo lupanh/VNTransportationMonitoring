@@ -5,7 +5,7 @@ import java.util.List;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
 
-import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 import edu.ktlab.news.vntransmon.util.JodaTimeParser;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
@@ -27,7 +27,7 @@ public class BaomoiDBMoving {
 		long numHits = response.getHits().getTotalHits();
 		int numPages = (numHits == 0) ? 0 : (int) (numHits / size) + 1;
 		for (int i = 0; i < numPages; i++) {
-			List<NewsRawDocument> articles = esfunction.queryArticleByMatchAll(SOURCE_INDEX,
+			List<NewsRawDocument> articles = esfunction.queryAllArticle(SOURCE_INDEX,
 					"article", size, i * size);
 			for (NewsRawDocument doc : articles) {
 				doc.setDate(JodaTimeParser.parseDate(doc.getDate()));

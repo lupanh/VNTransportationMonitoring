@@ -3,7 +3,7 @@ package edu.ktlab.news.vntransmon.io;
 import java.io.File;
 import java.nio.charset.Charset;
 
-import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 import edu.ktlab.news.vntransmon.util.FileHelper;
 
 public class JsonFileOutputWriter implements OutputWriter<NewsRawDocument> {

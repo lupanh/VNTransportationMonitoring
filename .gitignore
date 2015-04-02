@@ -1,6 +1,7 @@
 *.class
 .classpath
 .project
+*.log*
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -14,9 +15,10 @@
 hs_err_pid*
 
 # Folder #
-data/baomoi/*.*
+data/
 target/
 docs/
+test/
 bin/
 .settings/
 .svn/

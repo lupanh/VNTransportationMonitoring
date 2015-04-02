@@ -2,7 +2,7 @@ package edu.ktlab.news.vntransmon.io;
 
 import com.google.gson.Gson;
 
-import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 
 public class GsonExample {
 	public static void main(String[] args) throws Exception {
@@ -19,7 +19,7 @@ public class GsonExample {
 		System.out.println(json);
 		
 		document = gson.fromJson(json, NewsRawDocument.class);
-		System.out.println(document.getDate());
+		System.out.println(document.getText());
 	}
 
 }

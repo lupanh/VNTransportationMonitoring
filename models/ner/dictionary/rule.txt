@@ -1,0 +1,172 @@
+FIRE	vụ cháy
+FIRE	cháy
+FIRE	biển lửa
+FIRE	bùng cháy
+FIRE	bị cháy
+FIRE	bị đốt
+FIRE	bốc cháy
+FIRE	cháy lớn
+FIRE	cháy rụi
+FIRE	bỏng
+FIRE	bỏng nặng
+FIRE	nổ
+FIRE	nổ ga
+FIRE	thiêu rụi
+FIRE	chết cháy
+FIRE	phóng hỏa
+FIRE	đốt nhà
+FIRE	đám cháy
+DAMAGE	bị thương
+DAMAGE	bị chết
+DAMAGE	chết
+DAMAGE	chết đuối
+DAMAGE	trọng thương
+DAMAGE	thương nặng
+DAMAGE	thương vong
+DAMAGE	chết người
+DAMAGE	người chết
+DAMAGE	chết thảm
+DAMAGE	chết tại chỗ
+DAMAGE	tử vong
+DAMAGE	chấn thương sọ não
+DAMAGE	chấn thương
+DAMAGE	vỡ sọ
+DAMAGE	gãy chân
+DAMAGE	gãy tay
+DAMAGE	vỡ não
+DAMAGE	thủng bụng
+DAMAGE	vết thương ngoài da
+DAMAGE	lòi ruột
+DAMAGE	thiệt mạng
+DAMAGE	nạn nhân
+ACCIDENT	đâm nát đầu
+ACCIDENT	đâm xe
+ACCIDENT	đấu đầu
+ACCIDENT	xe đối đầu
+ACCIDENT	đụng xe
+ACCIDENT	đâm nhau
+ACCIDENT	tai nạn
+ACCIDENT	tai nạn giao thông
+ACCIDENT	tai nạn giao thông nghiêm trọng
+ACCIDENT	gây tai nạn
+ACCIDENT	gây tai nạn giao thông
+ACCIDENT	gặp tai nạn
+ACCIDENT	gặp tai nạn giao thông
+ACCIDENT	húc nhau
+ACCIDENT	lao xuống gầm
+ACCIDENT	chui vào gầm
+ACCIDENT	bị tông
+ACCIDENT	cán chết
+ACCIDENT	cán qua
+ACCIDENT	húc
+ACCIDENT	đâm
+ACCIDENT	chui gầm
+ACCIDENT	lật tàu
+ACCIDENT	trật bánh
+ACCIDENT	tàu trật bánh
+ACCIDENT	đắm thuyền
+ACCIDENT	chìm thuyền
+ACCIDENT	lật thuyền
+CRIMICAL	án mạng
+CRIMICAL	ẩu đả
+CRIMICAL	ẩu đả tới chết
+CRIMICAL	băng cướp
+CRIMICAL	băng đảng
+CRIMICAL	băng nhóm
+CRIMICAL	băng trộm
+CRIMICAL	bị bắt
+CRIMICAL	bị chém
+CRIMICAL	bị chém tới chết
+CRIMICAL	bị cưỡng dâm
+CRIMICAL	bị cưỡng hiếp
+CRIMICAL	bị đâm
+CRIMICAL	bị đâm tới chết
+CRIMICAL	bị đánh chết
+CRIMICAL	bị đánh tới chết
+CRIMICAL	bị giết
+CRIMICAL	bị hiếp dâm
+CRIMICAL	bị làm nhục
+CRIMICAL	bị sát hại
+CRIMICAL	bị xâm hại
+CRIMICAL	bọn cướp
+CRIMICAL	bức hại
+CRIMICAL	cầm đầu
+CRIMICAL	cầm đầu băng cướp
+CRIMICAL	chém chết
+CRIMICAL	chém chết người
+CRIMICAL	chém tới chết
+CRIMICAL	cưỡng bức
+CRIMICAL	cưỡng dâm
+CRIMICAL	cưỡng đoạt
+CRIMICAL	cưỡng hiếp
+CRIMICAL	cưỡng hiếp tập thể
+CRIMICAL	cuồng sát
+CRIMICAL	cướp
+CRIMICAL	cướp của
+CRIMICAL	cướp của giết người
+CRIMICAL	cướp giật
+CRIMICAL	cướp ngân hàng
+CRIMICAL	cướp nữ trang
+CRIMICAL	cướp ô tô
+CRIMICAL	cướp taxi
+CRIMICAL	cướp tiệm vàng
+CRIMICAL	cướp tiền
+CRIMICAL	cướp xe
+CRIMICAL	đã bị bắt
+CRIMICAL	đâm chết người
+CRIMICAL	đẫm máu
+CRIMICAL	đâm người
+CRIMICAL	đâm người tới chết
+CRIMICAL	đâm tới chết
+CRIMICAL	đánh chết
+CRIMICAL	đánh người
+CRIMICAL	đánh người tới chết
+CRIMICAL	đánh tới chết
+CRIMICAL	đi cướp
+CRIMICAL	đột nhập
+CRIMICAL	giật đồ
+CRIMICAL	giật dây chuyền
+CRIMICAL	giật túi
+CRIMICAL	giết
+CRIMICAL	giết người
+CRIMICAL	giết người cướp của
+CRIMICAL	giở trò đồi bại
+CRIMICAL	hại đời
+CRIMICAL	hãm hiếp
+CRIMICAL	hiếp dâm
+CRIMICAL	hiếp dâm tập thể
+CRIMICAL	hỗn chiến
+CRIMICAL	huyết chiến
+CRIMICAL	kẻ cướp
+CRIMICAL	khát máu
+CRIMICAL	làm nhục
+CRIMICAL	làm trò đồi bại
+CRIMICAL	nhóm cướp
+CRIMICAL	sát hại
+CRIMICAL	tẩu thoát
+CRIMICAL	tên cướp
+CRIMICAL	thanh toán băng đảng
+CRIMICAL	thanh toán đẫm máu
+CRIMICAL	thanh toán giang hồ
+CRIMICAL	tội phạm
+CRIMICAL	trộm
+CRIMICAL	trộm tài sản
+CRIMICAL	trộm xe
+CRIMICAL	truy sát
+CRIMICAL	tự sát
+CRIMICAL	tự tử
+CRIMICAL	tự vẫn
+CRIMICAL	tướng cướp
+CRIMICAL	vụ án mạng
+CRIMICAL	vụ cướp
+CRIMICAL	xả xúng
+CRIMICAL	xâm hại
+CRIMICAL	xiết cổ
+CRIMICAL	yêu râu xanh
+LOCPREP	ở
+LOCPREP	tại
+LOCPREP	trên
+LOCPREP	xảy ra
+LOCPREP	diễn ra
+LOCPREP	gần
+LOCPREP	trong

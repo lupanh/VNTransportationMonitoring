@@ -89,7 +89,7 @@ public class ElasticSearchConnection {
 		}
 	}
 	
-	public void createMapping(String indexname, String type) {
+	public void createArticleMapping(String indexname, String type) {
 		XContentBuilder builder;
 		try {
 			builder = XContentFactory.jsonBuilder().startObject().startObject(type)

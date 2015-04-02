@@ -10,7 +10,7 @@ import org.elasticsearch.search.SearchHit;
 
 import com.google.gson.Gson;
 
-import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
 public class BaomoiESFunction {
@@ -34,6 +34,28 @@ public class BaomoiESFunction {
 		}
 	}
 
+	public NewsRawDocument getByBaomoiId(String indexname, String id) {
+		SearchResponse response = client.prepareSearch(indexname)
+				.setQuery(QueryBuilders.termQuery("id", id)).execute().actionGet();
+		if (response.getHits().getTotalHits() == 1) {
+			SearchHit hit = response.getHits().getHits()[0];
+			NewsRawDocument article = gson.fromJson(hit.sourceAsString(), NewsRawDocument.class);
+			return article;
+		} else
+			return null;
+	}
+	
+	public NewsRawDocument getByBaomoiId(String id) {
+		SearchResponse response = client.prepareSearch(PropertyLoader.getInstance().getProperties("INDEX_NAME"))
+				.setQuery(QueryBuilders.termQuery("id", id)).execute().actionGet();
+		if (response.getHits().getTotalHits() == 1) {
+			SearchHit hit = response.getHits().getHits()[0];
+			NewsRawDocument article = gson.fromJson(hit.sourceAsString(), NewsRawDocument.class);
+			return article;
+		} else
+			return null;
+	}
+
 	public List<NewsRawDocument> queryArticleByString(String query, int size, int from) {
 		return queryArticleByString(PropertyLoader.getInstance().getProperties("INDEX_NAME"),
 				PropertyLoader.getInstance().getProperties("TYPE_NEWS_NAME"), query, size, from);
@@ -44,7 +66,7 @@ public class BaomoiESFunction {
 		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
 
 		SearchResponse response = client.prepareSearch(index).setTypes(type)
-				.setQuery(QueryBuilders.simpleQueryString(query)).setSize(size).setFrom(from)
+				.setQuery(QueryBuilders.simpleQueryStringQuery(query)).setSize(size).setFrom(from)
 				.execute().actionGet();
 		System.err.println("Query:" + query + " (Number of hits "
 				+ response.getHits().getTotalHits() + ", size " + size + ", from " + from + ")");
@@ -57,7 +79,7 @@ public class BaomoiESFunction {
 		return articles;
 	}
 
-	public List<NewsRawDocument> queryArticleByMatchAll(String index, String type, int size,
+	public List<NewsRawDocument> queryAllArticle(String index, String type, int size,
 			int from) {
 		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
 
@@ -85,7 +107,7 @@ public class BaomoiESFunction {
 		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
 
 		SearchResponse response = client.prepareSearch(index).setTypes(type)
-				.setQuery(QueryBuilders.simpleQueryString(query)).setSize(1).execute().actionGet();
+				.setQuery(QueryBuilders.simpleQueryStringQuery(query)).setSize(1).execute().actionGet();
 
 		long numHits = response.getHits().getTotalHits();
 		int numPages = (numHits == 0) ? 0 : (int) (numHits / size) + 1;
@@ -95,7 +117,7 @@ public class BaomoiESFunction {
 		return articles;
 	}
 
-	public List<NewsRawDocument> queryAllArticleByMatchAll(String index, String type, int size) {
+	public List<NewsRawDocument> queryAllArticle(String index, String type, int size) {
 		List<NewsRawDocument> articles = new ArrayList<NewsRawDocument>();
 
 		SearchResponse response = client.prepareSearch(index).setTypes(type)
@@ -104,7 +126,7 @@ public class BaomoiESFunction {
 		long numHits = response.getHits().getTotalHits();
 		int numPages = (numHits == 0) ? 0 : (int) (numHits / size) + 1;
 		for (int i = 0; i < numPages; i++)
-			articles.addAll(queryArticleByMatchAll(index, type, size, i * size));
+			articles.addAll(queryAllArticle(index, type, size, i * size));
 
 		return articles;
 	}
@@ -114,7 +136,7 @@ public class BaomoiESFunction {
 	}
 
 	public void deleteByQuery(String index, String type, String query) {
-		client.prepareDeleteByQuery(index).setQuery(QueryBuilders.simpleQueryString(query))
+		client.prepareDeleteByQuery(index).setQuery(QueryBuilders.simpleQueryStringQuery(query))
 				.execute().actionGet();
 	}
 }

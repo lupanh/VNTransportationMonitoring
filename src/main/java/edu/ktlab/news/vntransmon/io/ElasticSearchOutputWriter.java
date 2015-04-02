@@ -1,6 +1,6 @@
 package edu.ktlab.news.vntransmon.io;
 
-import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 import edu.ktlab.news.vntransmon.db.BaomoiESFunction;
 import edu.ktlab.news.vntransmon.db.ElasticSearchConnection;
 import edu.ktlab.news.vntransmon.util.PropertyLoader;
@@ -14,11 +14,11 @@ public class ElasticSearchOutputWriter implements OutputWriter<NewsRawDocument> 
 				"ELASTIC_SERVER"));
 		esfunction = new BaomoiESFunction(es.getClient());
 		if (firstrun)
-			es.createMapping(PropertyLoader.getInstance().getProperties("INDEX_NAME"),
+			es.createArticleMapping(PropertyLoader.getInstance().getProperties("INDEX_NAME"),
 					PropertyLoader.getInstance().getProperties("TYPE_NEWS_NAME"));
 	}
 
-	public synchronized void write(NewsRawDocument doc) {
+	public void write(NewsRawDocument doc) {
 		es.createIndexResponse(PropertyLoader.getInstance().getProperties("INDEX_NAME"),
 				PropertyLoader.getInstance().getProperties("TYPE_NEWS_NAME"), doc.getId(),
 				doc.printJson());

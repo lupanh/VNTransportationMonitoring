@@ -2,7 +2,7 @@ package edu.ktlab.news.vntransmon.crawler;
 
 import java.util.concurrent.Callable;
 
-import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 import edu.ktlab.news.vntransmon.fetcher.BaomoiFetcher;
 
 public class BaomoiFetchCallable implements Callable<NewsRawDocument>{

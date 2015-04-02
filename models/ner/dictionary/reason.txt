@@ -1,0 +1,63 @@
+băng ẩu qua đường
+băng qua đường sắt
+bất cẩn
+bất ngờ mở cửa
+chạy ẩu
+chạy quá nhanh
+chở .{0,20} cồng kềnh
+chở .{0,20} nặng
+chở .{0,20} quá khổ
+chở .{0,20} quá tải
+đánh võng
+đánh võng
+đi ẩu
+di chuyển nhanh
+dừng lại đột ngột
+đường trơn
+hỏng phanh
+khoe tốc độ
+không đi đúng phần đường
+không kịp phản ứng
+không làm chủ được tay lái
+không làm chủ được tốc độ
+không làm chủ tốc độ
+không quan sát
+không quan sát
+không quan sát kỹ
+lấn đường
+lạng lách
+loạng choạng
+mất lái
+mất phanh
+mất tập trung
+mưa lớn
+ngủ gật
+nổ lốp
+ô tô "điên"
+phanh gấp
+phóng bạt mạng
+phóng nhanh
+phóng với tốc độ nhanh
+phóng với tốc độ kinh hoàng
+quá tốc độ
+rơi hộp "đầu dầu bốc trục"
+say
+say sỉn
+sự cố "đầu dầu bốc trục"
+sử dụng bia rượu
+sử dụng rượu bia
+sử dụng rượu, bia
+sử dụng rượu|bia
+thiếu quan sát
+thời tiết xấu
+tốc độ kinh hoàng
+tốc độ cao
+tốc độ .{0,20} cao
+tốc độ .{0,20} nhanh
+uống bia rượu
+uống bia|rượu
+uống rượu bia
+vấp ổ gà
+vấp ổ voi
+vượt đèn đỏ
+xao lãng

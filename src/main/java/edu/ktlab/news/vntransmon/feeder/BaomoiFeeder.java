@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import edu.ktlab.news.vntransmon.bean.NewsRawDocument;
+import edu.ktlab.news.vntransmon.data.NewsRawDocument;
 import edu.ktlab.news.vntransmon.fetcher.BaomoiFetcher;
 import edu.ktlab.news.vntransmon.fetcher.URLFetcher;
 import edu.ktlab.news.vntransmon.io.OutputWriter;

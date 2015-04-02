@@ -1,0 +1,29 @@
+﻿\d+ tử vong
+\d+ nguy kịch
+\d+ qua đời
+\d+ người chết
+\d+ người phải đi cấp cứu
+\d+ .{3,30} nhập viện cấp cứu
+\d+ người chết
+\d+ người nhập viện
+thi thể \d+ nạn nhân
+\d+ người .{0,30} bị thương nặng
+\d+ người .{0,30} bị thương
+cán chết .{0,10} \d+ người
+cả \d+ thiệt mạng
+\d+ .{0,30} nhập viện cấp cứu
+anh|chị|bà|ông|em|cô .{2,30} chết tại chỗ
+\d+ .{0,30} bị thương nặng
+\d+ .{0,30} bị thương
+người .{0,30} bị thương nặng
+người .{0,30} bị thương
+\d+ .{3,30} tử nạn
+\d+ .{3,30} chết thảm
+\d+ .{3,30} thiệt mạng
+\d+ .{3,30} tình trạng nguy kịch
+\d+ .{3,30} tử vong
+\d+ .{3,30} đã thiệt mạng
+nhiều người bị thương
+nhiều người tử vong
+nhiều người nhập viện
+nhiều người nguy kịch

@@ -14,7 +14,7 @@ public class BaomoiFetchQueueProducer extends Thread {
 	}
 
 	public void run() {
-		for (int i = startID; i <= endID; i++) {
+		for (int i = endID; i >= 0; i--) {
 			try {
 				queue.put(i);
 			} catch (Exception e) {

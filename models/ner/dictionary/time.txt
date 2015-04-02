@@ -1,0 +1,74 @@
+hôm nay
+hôm qua
+sáng nay
+sáng hôm nay
+chiều nay
+chiều hôm nay
+sáng qua
+sáng hôm qua
+chiều qua
+chiều hôm qua
+rạng sáng nay
+trưa nay
+trưa hôm nay
+giữa trưa nay
+giữa trưa hôm nay
+trưa qua
+trưa hôm qua
+giữa trưa qua
+giữa trưa hôm qua
+đêm qua
+đêm hôm qua
+đêm nay
+đêm hôm nay
+rạng sáng hôm qua
+rạng sáng hôm nay
+buổi chiều tối hôm qua
+buổi chiều tối hôm nay
+chiều tối hôm qua
+chiều tối hôm nay
+hai ngày trước
+ba ngày trước
+bốn ngày trước
+năm ngày trước
+sáu ngày trước
+tuần trước
+nửa tháng trước
+tháng trước
+thứ hai
+thứ 2
+thứ ba
+thứ 3
+thứ tư
+thứ 4
+thứ năm
+thứ 5
+thứ sáu
+thứ 6
+thứ bảy
+thứ 7
+chủ nhật
+tháng một
+tháng hai
+tháng ba
+tháng tư
+tháng năm
+tháng sáu
+tháng bảy
+tháng tám
+tháng chín
+tháng mười
+tháng mười một
+tháng mười hai
+tháng 1
+tháng 2
+tháng 3
+tháng 4
+tháng 5
+tháng 6
+tháng 7
+tháng 8
+tháng 9
+tháng 10
+tháng 11
+tháng 12
