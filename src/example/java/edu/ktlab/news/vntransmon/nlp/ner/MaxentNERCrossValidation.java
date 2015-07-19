@@ -19,7 +19,7 @@ import opennlp.tools.util.PlainTextByLineStream;
 public class MaxentNERCrossValidation {
 	static int numFolds = 10;
 	static String encoding = "UTF-8";
-	static String inputData = "data/vntrans.2.0.txt";
+	static String inputData = "data/vndis.1.0.txt";
 	static int numIterator = 100;
 	static int cutoff = 1;
 	static int beamsize = 3;

@@ -36,7 +36,8 @@ public class ElasticSearchConnection {
 	public ElasticSearchConnection(String ipAddress) {
 		Settings settings = ImmutableSettings.settingsBuilder().put("client.transport.sniff", true)
 				.put("client.transport.ping_timeout", PropertyLoader.getInstance()
-						.getProperties("ELASTIC_TIMEOUT")).build();
+						.getProperties("ELASTIC_TIMEOUT")).put("http.port", PropertyLoader.getInstance()
+								.getProperties("ELASTIC_TIMEOUT")).build();
 		client = new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress(
 				ipAddress, 9300));
 	}

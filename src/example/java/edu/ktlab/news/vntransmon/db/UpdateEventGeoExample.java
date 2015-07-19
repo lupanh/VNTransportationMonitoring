@@ -12,11 +12,12 @@ import com.google.gson.Gson;
 
 import edu.ktlab.news.vntransmon.api.GetGeocoding;
 import edu.ktlab.news.vntransmon.bean.TrAcEvent;
+import edu.ktlab.news.vntransmon.util.PropertyLoader;
 
 public class UpdateEventGeoExample {
 	static EventAccidentESFunction esfunction;
 	static Gson gson = new Gson();
-	static String SERVER = "23.92.53.181";
+	static String SERVER = PropertyLoader.getInstance().getProperties("ELASTIC_SERVER");
 	static String TARGET_INDEX = "event_accident_db";
 	static String TARGET_TYPE = "event";
 
@@ -25,7 +26,7 @@ public class UpdateEventGeoExample {
 		esfunction = new EventAccidentESFunction(es.getClient());
 
 		SearchResponse response = es.getClient().prepareSearch(TARGET_INDEX).setTypes(TARGET_TYPE)
-				.setSize(1200).addSort("date", SortOrder.DESC)
+				.setSize(2400).addSort("date", SortOrder.DESC)
 				.setQuery(QueryBuilders.matchAllQuery())
 				.setPostFilter(FilterBuilders.missingFilter("geolocEvent")).execute().actionGet();
 		for (SearchHit hit : response.getHits().getHits()) {

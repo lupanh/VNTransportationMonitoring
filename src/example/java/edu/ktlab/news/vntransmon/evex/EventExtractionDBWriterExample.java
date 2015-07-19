@@ -43,7 +43,7 @@ public class EventExtractionDBWriterExample {
 				.setQuery(QueryBuilders.matchAllQuery()).setSize(1).setFrom(FROM).execute()
 				.actionGet();
 
-		long numHits = response.getHits().getTotalHits();
+		long numHits = response.getHits().getTotalHits() - FROM;
 		int numPages = (numHits == 0) ? 0 : (int) (numHits / BATCH_SIZE) + 1;
 		for (int i = 0; i < numPages; i++) {
 			try {
